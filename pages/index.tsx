@@ -5,13 +5,7 @@ import axios from "axios";
 export default function Home() {
     const [ledStatus, setLedStatus] = useState("");
     const [event , setEvent] = useState(false);
-
-    useEffect(() => {
-        axios.get('http://192.168.1.8/status').then(r => {
-            console.log(r.data.status)
-            setLedStatus(r.data.status)
-        })
-    }, [event]);
+    
     const handleTurnOFF = async() => {
         await axios.get('http://192.168.1.8/disable', {
 
@@ -25,6 +19,7 @@ export default function Home() {
         await axios.get('http://192.168.1.8/enable', {
 
         }).then(r =>{
+            console.log(r.data)
             setEvent(!event)
             }
 
